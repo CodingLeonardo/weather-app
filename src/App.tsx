@@ -1,73 +1,69 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 
+import { GlobalContextProvider, GlobalContext } from "./context/globalContext";
 import Badge from "./components/Badge";
 import Highlights from "./components/Highlights";
 import Forecast from "./components/Forecast";
 import Header from "./components/Header";
+import MyLocation from "./assets/my_location_black_24dp.svg";
 
-import { WeatherI, ForecastDayI } from "./interfaces/weather";
-import { getForecast, getWeather } from "./services/weather";
+import {
+  getForecast,
+  getForecastByQuery,
+  getWeather,
+  getWeatherByQuery,
+} from "./services/weather";
+import { useGeolocation } from "./hooks/useGeolocation";
 
 const App = () => {
-  const [weather, setWeather] = useState<WeatherI>({
-    coord: {
-      lon: 0,
-      lat: 0,
-    },
-    weather: [
-      {
-        id: 0,
-        main: "",
-        description: "",
-        icon: "",
-      },
-    ],
-    base: "",
-    main: {
-      temp: 0,
-      feels_like: 0,
-      temp_min: 0,
-      temp_max: 0,
-      pressure: 0,
-      humidity: 0,
-      sea_level: 0,
-      grnd_level: 0,
-    },
-    visibility: 0,
-    wind: {
-      speed: 0,
-      deg: 0,
-      gust: 0,
-    },
-    clouds: {
-      all: 0,
-    },
-    dt: 0,
-    sys: {
-      type: 0,
-      id: 0,
-      country: "",
-      sunrise: 0,
-      sunset: 0,
-    },
-    timezone: 0,
-    id: 0,
-    name: "",
-    cod: 0,
-  } as WeatherI);
-  const [forecast, setForecast] = useState<ForecastDayI[]>([]);
-  useEffect(() => {
-    getWeather("Los Teques").then((dataWeather) => {
-      getForecast(dataWeather.name).then((dataForecast) => {
-        console.log(dataForecast);
-        setForecast(dataForecast);
+  const { query, weather, forecast, setWeather, setForecast } =
+    useContext(GlobalContext);
+  const { getGeolocation } = useGeolocation();
+  const handleSearch = () => {};
+  const handleLocation = () => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const coords = {
+        lat: position.coords.latitude,
+        lon: position.coords.longitude,
+      };
+      getWeather(coords).then((dataWeather) => {
+        getForecast(coords).then((dataForecast) => {
+          setForecast(dataForecast);
+        });
+        setWeather(dataWeather);
       });
-      setWeather(dataWeather);
     });
-  }, []);
+  };
+
+  const fetchWeather = async () => {
+    if (query.lat || query.lon || query.city) {
+      getWeather(query).then((dataWeather) => {
+        getForecast(query).then((dataForecast) => {
+          setForecast(dataForecast);
+        });
+        setWeather(dataWeather);
+      });
+    } else {
+      getWeatherByQuery("Los Teques").then((dataWeather) => {
+        getForecastByQuery(dataWeather.name).then((dataForecast) => {
+          setForecast(dataForecast);
+        });
+        setWeather(dataWeather);
+      });
+    }
+  };
+
+  // useEffect(() => {
+  //   getGeolocation();
+  // }, []);
+
+  useEffect(() => {
+    fetchWeather();
+  }, [query]);
+
   return (
-    <main>
-      <Header />
+    <main className="grid">
+      <Header onSearch={handleSearch} onLocation={handleLocation} />
       <Badge
         name={weather.name}
         temp={weather.main.temp}
