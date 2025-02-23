@@ -1,14 +1,12 @@
-import { FC, useState } from "react";
+import { FC } from "react";
 import MyLocation from "../assets/my_location_black_24dp.svg";
 import { useGeolocation } from "../hooks/useGeolocation";
-import Search from "./Search";
 
 interface HeaderProps {
-  onSearch: () => void;
-  onLocation: () => void;
+  onClick: () => void;
 }
 
-const Header: FC<HeaderProps> = ({ onSearch }) => {
+const Header: FC<HeaderProps> = ({ onClick }) => {
   const { getGeolocation } = useGeolocation();
 
   const handleLocation = () => getGeolocation();
@@ -16,7 +14,7 @@ const Header: FC<HeaderProps> = ({ onSearch }) => {
     <>
       <header className="absolute w-full flex justify-between items-center text-white py-4 px-2">
         <button
-          onClick={onSearch}
+          onClick={onClick}
           className="bg-[#6E707A] py-2 px-4 font-medium"
         >
           Search for places

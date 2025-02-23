@@ -14,6 +14,8 @@ interface globalContextI {
   setQuery: (query: queryProps) => void;
   setWeather: (weather: WeatherI) => void;
   setForecast: (forecast: ForecastDayI[]) => void;
+  isOpenedSearch: boolean;
+  setIsOpenedSearch: (isOpenedSearch: boolean) => void;
 }
 
 interface globalContextProviderI {
@@ -77,10 +79,20 @@ export const GlobalContextProvider: FC<globalContextProviderI> = ({
   const [query, setQuery] = useState<queryProps>({ lat: 0, lon: 0, city: "" });
   const [weather, setWeather] = useState<WeatherI>(weatherInitialState);
   const [forecast, setForecast] = useState<ForecastDayI[]>([]);
+  const [isOpenedSearch, setIsOpenedSearch] = useState<boolean>(false);
 
   return (
     <GlobalContext.Provider
-      value={{ query, weather, forecast, setQuery, setWeather, setForecast }}
+      value={{
+        query,
+        weather,
+        forecast,
+        setQuery,
+        setWeather,
+        setForecast,
+        isOpenedSearch,
+        setIsOpenedSearch,
+      }}
     >
       {children}
     </GlobalContext.Provider>

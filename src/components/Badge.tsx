@@ -1,21 +1,23 @@
-import { FC } from "react";
+import { useContext } from "react";
 import LocationOn from "../assets/location_on_black_24dp.svg";
 import WeatherIcon from "./WeatherIcon";
+import { GlobalContext } from "../context/globalContext";
 
-interface BadgeProps {
-  temp: number;
-  name: string;
-  weather: any;
-}
-
-const Badge: FC<BadgeProps> = ({ name, temp, weather }) => {
+const Badge = () => {
+  const {
+    weather: {
+      name,
+      main: { temp },
+      weather,
+    },
+  } = useContext(GlobalContext);
   return (
     <section
       className="background bg-[#1E213A] before:content-[' '] before:absolute before:block before:left-0 before:top-12 before:w-full before:h-[326px] before:bg-[url(/src/assets/Cloud-background.png)]
         before:bg-[length:150%] before:bg-no-repeat before:bg-top before:opacity-10 h-screen flex items-center flex-col"
     >
       <div className="mt-32">
-        <WeatherIcon className="w-36" code={weather.id} />
+        <WeatherIcon className="w-36" code={weather[0].id} />
       </div>
       <div>
         <h1 className="inline-block font-medium text-[144px] text-white">
@@ -23,7 +25,9 @@ const Badge: FC<BadgeProps> = ({ name, temp, weather }) => {
         </h1>
         <span className="font-medium text-[48px] text-[#A09FB1]">°C</span>
       </div>
-      <h3 className="font-semibold text-4xl text-[#A09FB1]">{weather.main}</h3>
+      <h3 className="font-semibold text-4xl text-[#A09FB1]">
+        {weather[0].main}
+      </h3>
       <div className="mt-10 font-medium text-lg text-[#A09FB1] flex gap-x-4">
         <p>Today</p>
         <span>•</span>
