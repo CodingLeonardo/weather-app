@@ -1,92 +1,47 @@
-<!-- Please update value in the {}  -->
+# Weather App
 
-<h1 align="center">{Your project name}</h1>
-
-<div align="center">
-   Solution for a challenge from  <a href="http://devchallenges.io" target="_blank">Devchallenges.io</a>.
-</div>
-
-<div align="center">
-  <h3>
-    <a href="https://{your-demo-link.your-domain}">
-      Demo
-    </a>
-    <span> | </span>
-    <a href="https://{your-url-to-the-solution}">
-      Solution
-    </a>
-    <span> | </span>
-    <a href="https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv">
-      Challenge
-    </a>
-  </h3>
-</div>
-
-<!-- TABLE OF CONTENTS -->
-
-## Table of Contents
+## Table of contents
 
 - [Overview](#overview)
-  - [Built With](#built-with)
-- [Features](#features)
-- [How to use](#how-to-use)
-- [Contact](#contact)
-- [Acknowledgements](#acknowledgements)
-
-<!-- OVERVIEW -->
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
 ## Overview
 
-![screenshot](https://user-images.githubusercontent.com/16707738/92399059-5716eb00-f132-11ea-8b14-bcacdc8ec97b.png)
+### The challenge
 
-Introduce your projects by taking a screenshot or a gif. Try to tell visitors a story about your project by answering:
+This programming challenge consists of developing a web or mobile application that allows users to check the current weather and the forecast for the next 5 days. The application must be able to detect the user's location to display the weather for their city by default, but it must also allow searching for the weather for any other city. The interface must display detailed information such as date and location, type of weather with its respective image, minimum and maximum temperatures, wind state and direction, humidity percentage, visibility and air pressure. Optional functionalities may include the ability to request the weather for the user's current location and convert the temperature between degrees Celsius and Fahrenheit.
 
-- Where can I see your demo?
-- What was your experience?
-- What have you learned/improved?
-- Your wisdom? :)
+### Screenshot
 
-### Built With
+![](./screenshot.png)
 
-<!-- This section should list any major frameworks that you built your project using. Here are a few examples.-->
+### Links
 
-- [React](https://reactjs.org/)
-- [Vue.js](https://vuejs.org/)
-- [Tailwind](https://tailwindcss.com/)
+- [Live Site URL](https://codingleonardo.github.io/weather-app/)
 
-## Features
+## My process
 
-<!-- List the features of your application or follow the template. Don't share the figma file here :) -->
+### Built with
 
-This application/site was created as a submission to a [DevChallenges](https://devchallenges.io/challenges) challenge. The [challenge](https://devchallenges.io/challenges/mM1UIenRhK808W8qmLWv) was to build an application to complete the given user stories.
+- [Typescript](https://www.typescriptlang.org/) - Superset of JavaScript which adds static typing
+- [React](https://reactjs.org/) - JS library
+- [Tailwind CSS](https://tailwindcss.com/) - CSS library
+- [OpenWeatherMap](https://openweathermap.org/) - An API for weather data and weather forecasts
+- [The Companies API - Cities](https://www.thecompaniesapi.com/es/api/search-cities) - A data api of world cities
+- [FlagAPI](https://flagsapi.com/) - An API of images of all the flags of the world
 
-## How To Use
+### Useful resources
 
-<!-- Example: -->
+- [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/CSS) - This helped me learn how filters work in css.
 
-To clone and run this application, you'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer. From your command line:
+## Author
 
-```bash
-# Clone this repository
-$ git clone https://github.com/your-user-name/your-project-name
-
-# Install dependencies
-$ npm install
-
-# Run the app
-$ npm start
-```
-
-## Acknowledgements
-
-<!-- This section should list any articles or add-ons/plugins that helps you to complete the project. This is optional but it will help you in the future. For example: -->
-
-- [Steps to replicate a design with only HTML and CSS](https://devchallenges-blogs.web.app/how-to-replicate-design/)
-- [Node.js](https://nodejs.org/)
-- [Marked - a markdown parser](https://github.com/chjj/marked)
-
-## Contact
-
-- Website [your-website.com](https://{your-web-site-link})
-- GitHub [@your-username](https://{github.com/your-usermame})
-- Twitter [@your-twitter](https://{twitter.com/your-username})
+- Website - [Leonardo Rivero](https://codingleonardo.github.io/)
+- DevChallenges.io - [@CodingLeonardo](https://devchallenges.io/profile/8c0bdef8-0f64-4c92-8640-bcae8d05fb4b)
+- Twitter - [@CodingLeonardo](https://www.twitter.com/CodingLeonardo)
