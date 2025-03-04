@@ -11,19 +11,9 @@ import { getForecast, getWeather } from "./services/weather";
 import { useGeolocation } from "./hooks/useGeolocation";
 
 const App = () => {
-  const {
-    query,
-    weather,
-    forecast,
-    setWeather,
-    setForecast,
-    isOpenedSearch,
-    setIsOpenedSearch,
-  } = useContext(GlobalContext);
+  const { query, weather, forecast, setWeather, setForecast, isOpenedSearch } =
+    useContext(GlobalContext);
   const { getGeolocation } = useGeolocation();
-  const handleClick = () => {
-    setIsOpenedSearch(!isOpenedSearch);
-  };
 
   const fetchWeather = async () => {
     if (query.lat || query.lon || query.city) {
@@ -45,9 +35,7 @@ const App = () => {
   }, [query]);
 
   return (
-    <main className="grid">
-      <Header onClick={handleClick} />
-      {isOpenedSearch && <Search />}
+    <main className="grid grid-cols-1 md:grid-cols-layout md:grid-rows-3 md:h-screen">
       <Badge />
       <Forecast list={forecast} />
       <Highlights

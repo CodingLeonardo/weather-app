@@ -2,6 +2,8 @@ import { useContext } from "react";
 import LocationOn from "../assets/location_on_black_24dp.svg";
 import WeatherIcon from "./WeatherIcon";
 import { GlobalContext } from "../context/globalContext";
+import Header from "../components/Header";
+import Search from "../components/Search";
 
 const Badge = () => {
   const {
@@ -10,12 +12,19 @@ const Badge = () => {
       main: { temp },
       weather,
     },
+    setIsOpenedSearch,
+    isOpenedSearch,
   } = useContext(GlobalContext);
+  const handleClick = () => {
+    setIsOpenedSearch(!isOpenedSearch);
+  };
   return (
     <section
-      className="background bg-[#1E213A] before:content-[' '] before:absolute before:block before:left-0 before:top-12 before:w-full before:h-[326px] before:bg-[url(/src/assets/Cloud-background.png)]
-        before:bg-[length:150%] before:bg-no-repeat before:bg-top before:opacity-10 h-screen flex items-center flex-col"
+      className="relative background bg-[#1E213A] before:content-[' '] before:absolute before:block before:left-0 before:top-12 before:w-full before:h-[326px] before:bg-[url(/src/assets/Cloud-background.png)]
+        before:bg-[length:150%] before:bg-no-repeat before:bg-top before:opacity-10 flex items-center flex-col md:row-span-3 md:col-start-1 h-screen"
     >
+      {isOpenedSearch && <Search />}
+      <Header onClick={handleClick} />
       <div className="mt-32">
         <WeatherIcon className="w-36" code={weather[0].id} />
       </div>

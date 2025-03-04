@@ -90,7 +90,7 @@ const Search = () => {
 
   return (
     <>
-      <menu className="background absolute z-10 bg-[#1E213A] h-screen w-full flex flex-col py-6 px-4">
+      <menu className="background fixed md:absolute z-10 bg-[#1E213A] h-full w-full flex flex-col py-6 px-4">
         <button className="self-end" onClick={handleClick}>
           <img className="w-10" src={CloseIcon} alt="Close" />
         </button>
@@ -108,9 +108,9 @@ const Search = () => {
             Search
           </button>
         </div>
-        <div className="mt-8">
-          <h2 className="text-white font-bold text-xl">Cities found</h2>
-          <ul className="mt-4">
+        <h2 className="text-white mt-8 font-bold text-xl">Cities found</h2>
+        <div className="mt-4 max-h-min overflow-y-scroll">
+          <ul>
             {citiesFound.length > 0 &&
               citiesFound.map((city: City, index: number) => (
                 <SearchItem key={index} city={city} />
