@@ -12,7 +12,7 @@ const Header: FC<HeaderProps> = ({ onClick }) => {
   const handleLocation = () => getGeolocation();
   return (
     <>
-      <header className="absolute w-full flex justify-between items-center text-white py-4 px-2">
+      <header className="w-full flex justify-between items-center text-white py-4 px-2 h-fit">
         <button
           onClick={onClick}
           className="bg-[#6E707A] py-2 px-4 font-medium"
