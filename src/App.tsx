@@ -7,6 +7,7 @@ import Forecast from "./components/Forecast";
 
 import { getForecast, getWeather } from "./services/weather";
 import { useGeolocation } from "./hooks/useGeolocation";
+import Footer from "./components/Footer";
 
 const App = () => {
   const { query, weather, forecast, setWeather, setForecast } =
@@ -33,7 +34,7 @@ const App = () => {
   }, [query]);
 
   return (
-    <main className="grid grid-cols-1 md:grid-cols-layout md:grid-rows-3 md:h-screen">
+    <main className="h-full grid grid-cols-layout-mobile grid-rows-layout-mobile auto-rows-fr md:grid-cols-layout-desktop md:grid-rows-layout-desktop md:h-screen">
       <Badge />
       <Forecast list={forecast} />
       <Highlights
@@ -43,6 +44,7 @@ const App = () => {
         humidity={weather.main.humidity}
         visibility={weather.visibility}
       />
+      <Footer />
     </main>
   );
 };

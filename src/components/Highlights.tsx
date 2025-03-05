@@ -19,7 +19,7 @@ const Highlights: FC<HighlightsProps> = ({
   airPressure,
 }) => {
   return (
-    <section className="bg-[#100E1D] text-white h-fit md:row-span-2 md:col-start-2 md:row-start-2">
+    <section className="bg-[#100E1D] text-white h-fit row-start-3 md:col-start-2 md:row-start-2">
       <div className="w-10/12 m-auto">
         <h1 className="font-bold text-2xl pt-8">Today's Highlights</h1>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 py-8">
