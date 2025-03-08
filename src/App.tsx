@@ -34,7 +34,7 @@ const App = () => {
   }, [query]);
 
   return (
-    <main className="h-full grid grid-cols-layout-mobile grid-rows-layout-mobile auto-rows-fr md:grid-cols-layout-desktop md:grid-rows-layout-desktop md:h-screen">
+    <main className="h-full grid grid-cols-layout-mobile grid-rows-layout-mobile auto-rows-fr md:grid-cols-layout-desktop md:grid-rows-layout-desktop md:h-screen md:overflow-hidden">
       <Badge />
       <Forecast list={forecast} />
       <Highlights

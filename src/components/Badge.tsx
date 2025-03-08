@@ -21,7 +21,7 @@ const Badge = () => {
   return (
     <section
       className="relative background bg-[#1E213A] before:content-[' '] before:absolute before:block before:left-0 before:top-12 before:w-full before:h-[326px] before:bg-[url(/src/assets/Cloud-background.png)]
-        before:bg-[length:150%] before:bg-no-repeat before:bg-top before:opacity-10 flex items-center flex-col md:row-span-3 md:col-start-1 h-screen"
+        before:bg-[length:150%] before:bg-no-repeat before:bg-top before:opacity-10 flex items-center flex-col md:row-span-3 md:col-start-1 h-screen md:h-full"
     >
       {isOpenedSearch && <Search />}
       <Header onClick={handleClick} />

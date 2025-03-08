@@ -4,12 +4,13 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        "layout-desktop": "30vw 1fr",
+        "layout-desktop": "1.2fr 3fr",
         "layout-mobile": "1fr",
-        "forecast-desktop": "repeat(5, minmax(8em, 1fr));",
+        "forecast-desktop": "repeat(5, 8em)",
+        "forecast-mobile": "repeat(2, 8em)",
       },
       gridTemplateRows: {
-        "layout-desktop": "max-content max-content 6rem",
+        "layout-desktop": "1fr 2fr 1fr",
         "layout-mobile": "max-content max-content max-content 6rem",
       },
     },
