@@ -20,10 +20,11 @@ const Header: FC<HeaderProps> = ({ onClick }) => {
           Search for places
         </button>
         <button
+          aria-label="My Location"
           onClick={handleLocation}
           className="bg-[#6e707a] rounded-full p-2"
         >
-          <img src={MyLocation} alt="" />
+          <img src={MyLocation} alt="Location Icon" />
         </button>
       </header>
     </>

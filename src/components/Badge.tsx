@@ -26,7 +26,11 @@ const Badge = () => {
       {isOpenedSearch && <Search />}
       <Header onClick={handleClick} />
       <div className="mt-32">
-        <WeatherIcon className="w-36" code={weather[0].id} />
+        <WeatherIcon
+          className="w-36"
+          alt={weather[0].description}
+          code={weather[0].id}
+        />
       </div>
       <div>
         <h1 className="inline-block font-medium text-[144px] text-white">
@@ -34,9 +38,9 @@ const Badge = () => {
         </h1>
         <span className="font-medium text-[48px] text-[#A09FB1]">°C</span>
       </div>
-      <h3 className="font-semibold text-4xl text-[#A09FB1]">
+      <h2 className="font-semibold text-4xl text-[#A09FB1]">
         {weather[0].main}
-      </h3>
+      </h2>
       <div className="mt-10 font-medium text-lg text-[#A09FB1] flex gap-x-4">
         <p>Today</p>
         <span>•</span>

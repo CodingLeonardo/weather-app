@@ -1,4 +1,4 @@
-import { FC, HTMLAttributes } from "react";
+import { FC, ImgHTMLAttributes } from "react";
 import Snow from "../assets/Snow.png";
 import Thunderstorm from "../assets/Thunderstorm.png";
 import Shower from "../assets/Shower.png";
@@ -7,7 +7,7 @@ import HeavyCloud from "../assets/HeavyCloud.png";
 import LightCloud from "../assets/LightCloud.png";
 import Clear from "../assets/Clear.png";
 
-interface WeatherIconProps extends HTMLAttributes<HTMLImageElement> {
+interface WeatherIconProps extends ImgHTMLAttributes<HTMLImageElement> {
   code: number;
 }
 

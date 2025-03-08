@@ -19,7 +19,7 @@ const ForecastDay: FC<ForecastDayProps> = ({
         }).format(new Date(dt_txt))}
       </h2>
       <div className="w-16">
-        <WeatherIcon code={weather[0].id} />
+        <WeatherIcon alt={weather[0].description} code={weather[0].id} />
       </div>
       <div className="flex gap-x-6">
         <p className="font-medium">{temp_max.toFixed(0)}°C</p>
