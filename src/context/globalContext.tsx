@@ -1,10 +1,10 @@
-import { FC, ReactNode, createContext, useState } from "react";
+import { FC, ReactNode, createContext, useState, useEffect } from "react";
 import { ForecastDayI, WeatherI } from "../interfaces/weather";
 
 interface queryProps {
-  lat: number;
-  lon: number;
-  city: string;
+  name: string;
+  latitude: number;
+  longitude: number;
 }
 
 interface globalContextI {
@@ -76,10 +76,28 @@ const weatherInitialState: WeatherI = {
 export const GlobalContextProvider: FC<globalContextProviderI> = ({
   children,
 }) => {
-  const [query, setQuery] = useState<queryProps>({ lat: 0, lon: 0, city: "" });
+  const [query, setQuery] = useState<queryProps>({
+    latitude: 0,
+    longitude: 0,
+    name: "los teques",
+  });
   const [weather, setWeather] = useState<WeatherI>(weatherInitialState);
   const [forecast, setForecast] = useState<ForecastDayI[]>([]);
   const [isOpenedSearch, setIsOpenedSearch] = useState<boolean>(false);
+
+  useEffect(() => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const coords = {
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          name: "",
+        };
+        if (query.latitude === coords.latitude && query.longitude === coords.longitude) return;
+        setQuery(coords);
+      });
+    }
+  }, [query]);
 
   return (
     <GlobalContext.Provider

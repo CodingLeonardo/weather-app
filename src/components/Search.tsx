@@ -1,22 +1,24 @@
 import { ChangeEvent, FC, useContext, useEffect, useState } from "react";
-import { City } from "../interfaces/cities";
+import { searchCityResponse } from "../interfaces/cities";
 import { GlobalContext } from "../context/globalContext";
 import { searchCitiesByName } from "../services/cities";
 import CloseIcon from "../assets/x-icon.svg";
 import SearchIcon from "../assets/search-icon.svg";
 
 interface SearchItemProps {
-  city: City;
+  city: searchCityResponse;
 }
 
-const SearchItem: FC<SearchItemProps> = ({ city }) => {
+const SearchItem: FC<SearchItemProps> = ({
+  city: { name, latitude, longitude, continent, country, state },
+}) => {
   const { setQuery, setIsOpenedSearch, isOpenedSearch } =
     useContext(GlobalContext);
   const handleClick = () => {
     setQuery({
-      city: city.name,
-      lat: city.lat,
-      lon: city.lon,
+      name,
+      latitude,
+      longitude,
     });
     setIsOpenedSearch(!isOpenedSearch);
   };
@@ -27,15 +29,15 @@ const SearchItem: FC<SearchItemProps> = ({ city }) => {
     >
       <div>
         <img
-          src={`https://flagsapi.com/${city.country.code.toUpperCase()}/flat/64.png`}
+          src={`https://flagsapi.com/${country.code.toUpperCase()}/flat/64.png`}
         />
       </div>
       <div>
         <h3 className="text-white font-bold">
-          {city.name} - {city.county}
+          {name} - {state.name}
         </h3>
         <p className="text-[#616475]">
-          {city.country.name} - {city.continent}
+          {country.name} - {continent.name}
         </p>
       </div>
     </li>
@@ -46,7 +48,7 @@ const Search = () => {
   const { setIsOpenedSearch, isOpenedSearch } = useContext(GlobalContext);
 
   const [query, setQuery] = useState("");
-  const [citiesFound, setCitiesFound] = useState<City[]>([]);
+  const [citiesFound, setCitiesFound] = useState<searchCityResponse[]>([]);
 
   useEffect(() => {
     if (!query) {
@@ -54,25 +56,12 @@ const Search = () => {
       return;
     }
     const timeout = setTimeout(() => {
-      searchCitiesByName(query).then((data) => {
-        console.log(data);
-        if (data.cities.length === 0) {
+      searchCitiesByName(query).then((cities) => {
+        console.log(cities);
+        if (cities.length === 0) {
           setCitiesFound([]);
           return;
         }
-        const cities = data.cities.map((city: any) => {
-          return {
-            name: city.name,
-            continent: city.continent.name,
-            country: {
-              name: city.country.name,
-              code: city.country.code,
-            },
-            county: city.county?.name,
-            lat: city.county?.latitude,
-            lon: city.county?.longitude,
-          };
-        });
         setCitiesFound(cities);
       });
     }, 1200);
@@ -112,7 +101,7 @@ const Search = () => {
         <div className="mt-4 max-h-min overflow-y-scroll">
           <ul>
             {citiesFound.length > 0 &&
-              citiesFound.map((city: City, index: number) => (
+              citiesFound.map((city, index: number) => (
                 <SearchItem key={index} city={city} />
               ))}
           </ul>

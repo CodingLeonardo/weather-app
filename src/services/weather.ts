@@ -8,14 +8,16 @@ export async function getWeatherByQuery(city: string) {
 }
 
 export const getWeather = async ({
-  lat,
-  lon,
+  name,
+  latitude,
+  longitude,
 }: {
-  lat: number;
-  lon: number;
+  name: string;
+  latitude: number;
+  longitude: number;
 }) => {
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${API_KEY}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${name}&lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`
   );
   return response.json();
 };
@@ -31,9 +33,9 @@ export async function getForecastByQuery(city: string) {
   }
   return forecast;
 }
-export async function getForecast({ lat, lon }: { lat: number; lon: number }) {
+export async function getForecast({ latitude, longitude }: { latitude: number; longitude: number }) {
   const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&cnt=40&units=metric&appid=${API_KEY}`
+    `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=40&units=metric&appid=${API_KEY}`
   );
   const data = await response.json();
   const forecast = [];

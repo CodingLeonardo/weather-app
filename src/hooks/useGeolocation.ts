@@ -7,11 +7,11 @@ export const useGeolocation = () => {
   const getGeolocation = () => {
     navigator.geolocation.getCurrentPosition((position) => {
       const coords = {
-        lat: position.coords.latitude,
-        lon: position.coords.longitude,
-        city: "",
+        latitude: position.coords.latitude,
+        longitude: position.coords.longitude,
+        name: "",
       };
-      if (query.lat === coords.lat && query.lon === coords.lon) return;
+      if (query.latitude === coords.latitude && query.longitude === coords.longitude) return;
       setQuery(coords);
       return setQuery;
     });

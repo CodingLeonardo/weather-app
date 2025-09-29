@@ -6,28 +6,30 @@ import Highlights from "./components/Highlights";
 import Forecast from "./components/Forecast";
 
 import { getForecast, getWeather } from "./services/weather";
-import { useGeolocation } from "./hooks/useGeolocation";
+// import { useGeolocation } from "./hooks/useGeolocation";
 import Footer from "./components/Footer";
 
 const App = () => {
   const { query, weather, forecast, setWeather, setForecast } =
     useContext(GlobalContext);
-  const { getGeolocation } = useGeolocation();
+  // const { getGeolocation } = useGeolocation();
 
   const fetchWeather = async () => {
-    if (query.lat || query.lon || query.city) {
+    if (query.latitude || query.longitude || query.name) {
       getWeather(query).then((dataWeather) => {
         getForecast(query).then((dataForecast) => {
+          console.log(dataForecast);
           setForecast(dataForecast);
         });
+        console.log(dataWeather);
         setWeather(dataWeather);
       });
     }
   };
 
-  useEffect(() => {
-    getGeolocation();
-  }, []);
+  // useEffect(() => {
+  //   getGeolocation();
+  // }, []);
 
   useEffect(() => {
     fetchWeather();
